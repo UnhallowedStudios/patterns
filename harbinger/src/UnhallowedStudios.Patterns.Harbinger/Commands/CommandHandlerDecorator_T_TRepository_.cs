@@ -19,6 +19,8 @@ namespace UnhallowedStudios.Patterns.Harbinger.Commands
 
         public new async Task ExecuteAsync(T command, CancellationToken cancellationToken = default(CancellationToken))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             await OnExecuteAsync(command, cancellationToken);
 
             await _decorated.ExecuteAsync(command, cancellationToken);
