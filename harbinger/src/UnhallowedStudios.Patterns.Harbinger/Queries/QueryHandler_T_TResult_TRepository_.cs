@@ -18,6 +18,8 @@ namespace UnhallowedStudios.Patterns.Harbinger.Queries
 
         public Task<TResult> ExecuteAsync(T query, CancellationToken cancellationToken = default(CancellationToken))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             return OnExecuteAsync(query, cancellationToken);
         }
 
