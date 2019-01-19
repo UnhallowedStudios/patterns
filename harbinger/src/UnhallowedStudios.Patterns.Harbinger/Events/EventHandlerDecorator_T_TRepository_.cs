@@ -19,6 +19,8 @@ namespace UnhallowedStudios.Patterns.Harbinger.Events
 
         public new async Task ExecuteAsync(T @event, CancellationToken cancellationToken = default(CancellationToken))
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             await OnExecuteAsync(@event, cancellationToken);
 
             await _decorated.ExecuteAsync(@event, cancellationToken);
